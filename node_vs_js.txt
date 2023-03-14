@@ -1,0 +1,12 @@
+things node.js has but client side js doesn't have: 
+1. global: browser doesnt have global, like th window
+2. process: like the document
+
+
+
+things node.js doesn't have but client side js has: 
+1. document : because it allows to work with dom and in nodejs dont have node
+2. window : because refrence to bowser window, and provided by the chrome 
+
+
+

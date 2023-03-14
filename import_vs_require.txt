@@ -1,0 +1,10 @@
+1.
+require is a built in function in nodejs, used to load modules sync
+import is a language feature of ES that allows to loaf modules async
+
+2.
+use another module bundler like webpack or babel , rename the files to mjs extention
+
+3.
+__filename
+__dirname
