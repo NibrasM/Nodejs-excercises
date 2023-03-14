@@ -1,16 +1,6 @@
 const chalk = require("chalk");
 const yargs = require("yargs");
-
-// const greenMsg = chalk.blue.inverse.bold("Success");
-// console.log(greenMsg);
-// const command = process.argv[2];
-// console.log(process.argv);
-
-// if (command === "add") {
-//   console.log("adding note");
-// } else if (command === "remove") {
-//   console.log("Removing note");
-// }
+const notes = require("./notes.js");
 
 //yargs part:
 
@@ -31,20 +21,50 @@ yargs.command({
     },
   },
   handler: function (argv) {
-    console.log("Title", argv.title);
-    console.log("body: ", argv.body);
+    notes.addNote(argv.title, argv.body);
   },
 });
-
-yargs.parse();
 
 //create remove command
 yargs.command({
   command: "remove",
   describe: "remove a note",
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: function (argv) {
+    notes.removeNote(argv.title);
+  },
+});
+
+// Create list command
+yargs.command({
+  command: "list",
+  describe: "List your notes",
   handler: function () {
-    console.log("Removing the note!");
+    notes.listNotes();
+  },
+});
+
+// Create read command
+yargs.command({
+  command: "read",
+  describe: "Read a note",
+  builder: {
+    title: {
+      describe: "note title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    notes.readNote(argv.title);
   },
 });
 
 // console.log(yargs.argv);
+yargs.parse();
